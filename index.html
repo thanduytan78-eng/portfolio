@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thân Duy Tân — Marketing · Portfolio 2026</title>
+<meta name="description" content="Portfolio của Thân Duy Tân — marketing và content cho Natural Landscape, An Việt Retreat, Bò Cạp Vàng, Happy Ranch, Harmony và Trị An Adventure. Nội dung theo CV, ảnh đang chờ thay.">
+<!--
+  BẢN v3 — kết hợp phong cách trình bày của mẫu tunkit28 (nền tối, chữ khổ lớn
+  tách nét, thanh trên có đồng hồ, nhãn mục trong ngoặc, danh sách đánh số,
+  dải chữ chạy) với nội dung khung v2. Code viết mới hoàn toàn, không dùng
+  code, ảnh hay nội dung của trang mẫu.
+  - Nội dung theo CV user gửi ngày 12/11/2026. Không bịa số liệu.
+  - Email lấy từ CV (thanduytan78@gmail.com), chờ user xác nhận.
+  - Số điện thoại KHÔNG hiển thị công khai trong bản này.
+  - Easy4School không có trong CV nên chưa đưa vào bản này.
+  - Mọi khối .ph là chỗ chờ ảnh thật: thay <div class="ph"> bằng <img> khi có ảnh.
+  - Chưa đăng lên GitHub.
+-->
+<style>
+  :root{
+    --bg:#0a120c; --bg2:#0e1a12; --card:#131f17; --card2:#18281e;
+    --ink:#eef4ec; --muted:#9db0a2; --faint:rgba(238,244,236,.28);
+    --line:rgba(238,244,236,.14);
+    --gold:#d9b23a; --gold2:#c9a227; --leaf:#8fbf7a;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.65}
+  a{color:var(--gold)}
+  :focus-visible{outline:3px solid var(--gold);outline-offset:2px;border-radius:6px}
+  .skip{position:absolute;left:-999px;top:0;background:var(--gold);color:#141414;padding:10px 16px;z-index:300;border-radius:0 0 10px 0;font-weight:700}
+  .skip:focus{left:0}
+
+  /* Thanh trên cố định: tên + đồng hồ + điều hướng + nút liên hệ */
+  .topbar{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;gap:18px;padding:10px 20px;background:rgba(6,11,8,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .brand{display:flex;align-items:baseline;gap:12px;white-space:nowrap;text-decoration:none;color:var(--ink)}
+  .brand b{font-size:16px;letter-spacing:.04em}
+  .brand b i{color:var(--gold);font-style:normal}
+  .clock{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+  .topnav{margin-left:auto;display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+  .topnav::-webkit-scrollbar{display:none}
+  .topnav a{white-space:nowrap;text-decoration:none;color:var(--ink);font-size:14px;font-weight:600;padding:8px 14px;border-radius:999px}
+  .topnav a[aria-current="true"]{background:var(--gold);color:#141414}
+  .top-contact{flex:none;text-decoration:none;font-weight:700;font-size:14px;color:#141414;background:var(--gold);padding:9px 18px;border-radius:999px;white-space:nowrap}
+
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+
+  /* Hero kiểu chữ khổ lớn */
+  .hero{position:relative;padding:118px 0 10px;overflow:hidden}
+  .hero::before{content:"";position:absolute;top:-180px;right:-120px;width:640px;height:640px;border-radius:50%;background:radial-gradient(circle,rgba(143,191,122,.20),transparent 65%);pointer-events:none}
+  .hero-grid{position:relative;display:grid;grid-template-columns:1.12fr .88fr;gap:44px;align-items:center}
+  .hashtags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+  .hashtags span{font-size:13px;font-weight:700;color:var(--leaf);border:1px solid rgba(143,191,122,.45);border-radius:999px;padding:5px 13px}
+  .hashtags span.loc{color:var(--muted);border-color:var(--line);font-weight:600}
+  .ver{font-style:italic;font-weight:700;color:var(--gold);letter-spacing:.06em;margin-bottom:2px}
+  .mega{font-size:clamp(72px,12.5vw,164px);line-height:.88;font-weight:900;letter-spacing:.015em;color:#f5f2e6}
+  @supports ((-webkit-background-clip:text) or (background-clip:text)){
+    .mega{background:linear-gradient(180deg,#fbf7e6 0%,#ece5c9 48%,#c9a227 100%);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 5px 0 rgba(0,0,0,.45))}
+  }
+  .tilt-row{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 16px}
+  .tilt{display:inline-block;background:#f7f4ee;color:#141414;font-weight:800;font-size:14px;letter-spacing:.05em;padding:9px 18px;border-radius:999px}
+  .tilt.t1{transform:rotate(-2deg)}
+  .tilt.t2{transform:rotate(1.4deg);background:var(--gold)}
+  .svc-line{font-size:13.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);line-height:1.8}
+  .lede{font-size:17px;max-width:600px;color:#d5ddd3;margin-top:14px}
+  .cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+  .btn{display:inline-block;text-decoration:none;font-weight:700;font-size:15px;padding:13px 28px;border-radius:999px;border:2px solid var(--gold)}
+  .btn.primary{background:var(--gold);color:#141414}
+  .btn.ghost{background:transparent;color:var(--ink);border-color:rgba(238,244,236,.4)}
+  .hero-photo{position:relative}
+  .hero-photo .glow{position:absolute;inset:8% 4%;background:radial-gradient(closest-side,rgba(217,178,58,.30),transparent 72%);filter:blur(10px)}
+  .ph{display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:16px;outline:2px dashed rgba(255,255,255,.55);outline-offset:-12px}
+  .hero-photo .ph{position:relative;min-height:430px;border-radius:28px;background:linear-gradient(160deg,#2e5a40,#0e1f14)}
+  .foliage{position:absolute;left:0;right:0;bottom:-2px;height:70px;pointer-events:none;opacity:.55}
+  .foliage svg{width:100%;height:100%;display:block}
+
+  /* Thẻ xem trước ở chân hero */
+  .preview{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:44px 0 8px}
+  .preview a{display:block;text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px 22px}
+  .preview a:hover{border-color:var(--gold)}
+  .preview .lbl{margin-bottom:6px}
+  .preview b{display:block;font-size:18px}
+  .preview span{font-size:14px;color:var(--muted)}
+
+  /* Dải chữ chạy */
+  .marquee{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:16px 0;margin-top:34px}
+  .marquee-track{display:flex;width:max-content;animation:scroll 30s linear infinite}
+  .marquee-track span{white-space:nowrap;font-size:clamp(20px,3vw,30px);font-weight:900;letter-spacing:.05em;text-transform:uppercase;color:var(--ink);padding-right:12px}
+  .marquee-track b{color:var(--gold);font-weight:900;padding:0 14px}
+  @keyframes scroll{to{transform:translateX(-50%)}}
+  .marquee:hover .marquee-track{animation-play-state:paused}
+
+  section{padding:64px 0;scroll-margin-top:76px}
+  section + section{border-top:1px solid var(--line)}
+  .lbl{font-size:12px;letter-spacing:.28em;text-transform:uppercase;font-weight:700;color:var(--gold)}
+  h2{font-size:clamp(28px,4vw,40px);line-height:1.15;font-weight:800;margin:10px 0 10px;letter-spacing:-.01em}
+  .sub{color:var(--muted);font-size:15px;max-width:680px;margin-bottom:32px}
+  h3{font-size:21px;margin-bottom:16px}
+
+  /* Giới thiệu */
+  .hello{font-size:clamp(24px,3.2vw,32px);font-weight:800;line-height:1.3;max-width:760px}
+  .about-text{max-width:720px;margin-top:16px}
+  .about-text p{font-size:17px;color:#d5ddd3}
+  .about-text p + p{margin-top:12px}
+  .traits{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+  .traits span{font-size:13.5px;font-weight:600;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:7px 15px}
+  .two-col{display:grid;grid-template-columns:1fr 1.35fr;gap:40px;margin-top:48px}
+  .edu-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px 22px;margin-bottom:16px}
+  .edu-card b{display:block;font-size:16px}
+  .edu-card .meta{color:var(--muted);font-size:14px}
+  .cert-ph{height:110px;border-radius:12px;background:linear-gradient(135deg,#8a6d1d,#c9a227);margin:12px 0}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-size:13px;font-weight:600;border:1px solid var(--line);background:var(--card2);border-radius:999px;padding:6px 13px;color:var(--ink)}
+  .tools{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:16px}
+  .tool{display:flex;gap:14px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+  .mono{flex:none;width:44px;height:44px;border-radius:12px;background:var(--gold);color:#141414;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:15px}
+  .tool b{display:block;font-size:15px}
+  .tool span{font-size:13px;color:var(--muted);line-height:1.4;display:block}
+  .exp-list{list-style:none;display:grid;gap:12px}
+  .exp-item{width:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px;display:grid;grid-template-columns:34px 1fr auto;gap:14px;align-items:center;cursor:pointer;font:inherit;color:inherit}
+  .exp-item:hover{border-color:var(--gold)}
+  .num{width:34px;height:34px;border-radius:50%;background:var(--gold);color:#141414;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px}
+  .exp-item b{display:block;font-size:16px}
+  .exp-item .role{font-size:14px;color:#d5ddd3}
+  .exp-item .when{font-size:13px;color:var(--muted);white-space:nowrap}
+  .exp-item .result{grid-column:2;font-size:14px;color:var(--leaf);font-weight:600}
+  .exp-item .more{grid-column:3;grid-row:1 / span 2;font-size:13px;font-weight:700;color:var(--gold);white-space:nowrap}
+
+  /* Thống kê */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  .stat{position:relative;background:var(--card2);border:1px solid var(--line);border-radius:16px;padding:26px 20px 20px;margin-top:12px}
+  .stat::before{content:"";position:absolute;top:-11px;left:18px;width:74px;height:13px;background:var(--card2);border:1px solid var(--line);border-bottom:none;border-radius:8px 8px 0 0}
+  .stat .big{font-size:clamp(30px,3.6vw,40px);font-weight:900;color:var(--gold);line-height:1.05}
+  .stat p{font-size:14px;line-height:1.5;margin-top:8px;color:#d5ddd3}
+  .stat .src{font-size:12.5px;color:var(--muted);margin-top:10px}
+  .stat-note{font-size:13.5px;color:var(--muted);margin-top:16px}
+
+  /* Lĩnh vực đánh số */
+  .fields{list-style:none;border-top:1px solid var(--line)}
+  .fields li{display:grid;grid-template-columns:84px 1fr auto;gap:20px;align-items:baseline;padding:22px 4px;border-bottom:1px solid var(--line)}
+  .fields .n{font-size:40px;font-weight:900;color:var(--faint);line-height:1}
+  .fields b{font-size:clamp(18px,2.4vw,24px);font-weight:800}
+  .fields .job{font-size:14px;color:var(--muted);text-align:right;white-space:nowrap}
+  .fields .note{grid-column:2;font-size:14.5px;color:var(--muted);margin-top:2px}
+
+  /* Carousel dự án */
+  .carousel{position:relative}
+  .track{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:6px 2px 18px;scrollbar-width:thin}
+  .proj{flex:0 0 min(80%,430px);scroll-snap-align:center;background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;position:relative}
+  .thumb{height:200px;position:relative}
+  .thumb.t1{background:linear-gradient(135deg,#1d3a2a,#4a7a5c)}
+  .thumb.t2{background:linear-gradient(135deg,#274b5e,#5e9a8a)}
+  .thumb.t3{background:linear-gradient(135deg,#8a6d1d,#d9b23a)}
+  .thumb.t4{background:linear-gradient(135deg,#3d5a1d,#7aa04a)}
+  .thumb.t5{background:linear-gradient(135deg,#4a2a5e,#8a5aa8)}
+  .thumb.t6{background:linear-gradient(135deg,#1f2a5e,#5a6fd6)}
+  .thumb .idx{position:absolute;top:12px;left:16px;font-size:34px;font-weight:900;color:rgba(255,255,255,.85);letter-spacing:.02em}
+  .proj .body{padding:20px 22px 22px;display:flex;flex-direction:column;gap:8px;flex:1}
+  .proj h3{margin-bottom:0}
+  .proj .meta{font-size:13.5px;color:var(--muted)}
+  .proj p{font-size:15px;flex:1;color:#d5ddd3}
+  .proj .detail-btn{align-self:flex-start;margin-top:8px;background:var(--gold);color:#141414;border:none;font:inherit;font-weight:700;font-size:14px;padding:10px 22px;border-radius:999px;cursor:pointer}
+  .car-nav{display:flex;align-items:center;gap:14px;justify-content:center}
+  .car-btn{width:44px;height:44px;border-radius:50%;border:2px solid var(--gold);background:transparent;color:var(--gold);font-size:20px;cursor:pointer;line-height:1}
+  .dots{display:flex;gap:8px}
+  .dots button{width:10px;height:10px;border-radius:50%;border:none;background:#3a4a3e;cursor:pointer;padding:0}
+  .dots button[aria-current="true"]{background:var(--gold)}
+
+  /* Dịch vụ + quy trình */
+  .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .svc{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px}
+  .svc b{font-size:18px;display:block;margin-bottom:8px}
+  .svc p{font-size:15px;color:#d5ddd3}
+  .svc .fit{font-size:13.5px;color:var(--muted);margin-top:12px}
+  .svc .go{display:inline-block;margin-top:14px;font-weight:700;font-size:14px}
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;list-style:none;counter-reset:step}
+  .steps li{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;counter-increment:step}
+  .steps li::before{content:counter(step,decimal-leading-zero);display:block;font-size:26px;font-weight:900;color:var(--gold);margin-bottom:8px}
+  .steps b{display:block;margin-bottom:6px}
+  .steps p{font-size:14.5px;color:#d5ddd3}
+
+  /* Gallery + lightbox */
+  .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .gallery figure{border-radius:16px;overflow:hidden;background:var(--card);border:1px solid var(--line);cursor:pointer}
+  .gallery figure:nth-child(odd){transform:rotate(-1.6deg)}
+  .gallery figure:nth-child(even){transform:rotate(1.4deg)}
+  .gallery figure:hover{transform:rotate(0);border-color:var(--gold)}
+  .gallery .ph{height:170px}
+  .gallery figcaption{padding:12px 14px;font-size:14px}
+  .gallery figcaption span{display:block;font-size:12.5px;color:var(--muted)}
+
+  /* Kết thúc kiểu cảm ơn + liên hệ */
+  .thanks{text-align:center;padding:72px 0 8px}
+  .thanks-word{font-size:clamp(52px,10.5vw,128px);font-weight:900;letter-spacing:.28em;text-indent:.28em;line-height:1;color:#f5f2e6}
+  @supports ((-webkit-background-clip:text) or (background-clip:text)){
+    .thanks-word{background:linear-gradient(180deg,#fbf7e6,#c9a227);-webkit-background-clip:text;background-clip:text;color:transparent}
+  }
+  .thanks .ready{color:var(--muted);margin-top:14px}
+  .contact-box{max-width:760px;margin:36px auto 0;background:var(--card);border:1px solid var(--line);border-radius:24px;padding:40px 36px;text-align:center}
+  .contact-box p{max-width:560px;margin:0 auto;font-size:17px;color:#d5ddd3}
+  .contact-box .cta-row{justify-content:center}
+  .copy-btn{background:transparent;color:var(--ink);border-color:rgba(238,244,236,.4);cursor:pointer;font:inherit}
+  .findme{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:26px}
+  .findme a,.findme span{display:inline-block;background:rgba(255,255,255,.05);border:1px solid var(--line);color:var(--ink);text-decoration:none;font-size:14px;font-weight:600;padding:9px 16px;border-radius:999px}
+  .contact-note{font-size:13.5px;color:var(--muted);margin-top:20px}
+
+  footer{padding:36px 24px 56px;color:var(--muted);font-size:13.5px;text-align:center}
+  footer a{color:var(--muted)}
+
+  /* Modal chi tiết + lightbox */
+  dialog{border:1px solid var(--line);border-radius:20px;padding:0;max-width:640px;width:calc(100% - 32px);background:var(--bg2);color:var(--ink);box-shadow:0 30px 70px rgba(0,0,0,.55)}
+  dialog::backdrop{background:rgba(0,0,0,.65)}
+  .dlg-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;padding:26px 28px 0}
+  .dlg-head h3{font-size:24px;margin-bottom:4px}
+  .dlg-head .meta{font-size:14px;color:var(--muted)}
+  .dlg-close{flex:none;width:38px;height:38px;border-radius:50%;border:2px solid var(--gold);background:transparent;color:var(--gold);font-size:18px;cursor:pointer;line-height:1}
+  .dlg-body{padding:18px 28px 30px}
+  .dlg-body .ph{height:150px;border-radius:14px;margin-bottom:18px}
+  .dlg-body ul{margin:0 0 16px 20px;font-size:15.5px;color:#d5ddd3}
+  .dlg-body li + li{margin-top:8px}
+  #lightbox .dlg-body .ph{height:300px}
+  #lightbox figcaption{margin-top:14px;font-size:15px;color:#d5ddd3}
+
+  @media(max-width:900px){
+    .hero-grid{grid-template-columns:1fr}
+    .hero-photo .ph{min-height:300px}
+    .preview{grid-template-columns:1fr}
+    .two-col{grid-template-columns:1fr}
+    .stats{grid-template-columns:1fr 1fr}
+    .svc-grid{grid-template-columns:1fr}
+    .steps{grid-template-columns:1fr 1fr}
+    .gallery{grid-template-columns:1fr 1fr}
+    .fields li{grid-template-columns:60px 1fr}
+    .fields .job{display:none}
+  }
+  @media(max-width:640px){
+    .topbar{padding:10px 12px;gap:10px}
+    .clock .tz{display:none}
+    .topnav a{padding:8px 10px;font-size:13px}
+    .top-contact{display:none}
+    .hero{padding-top:104px}
+    .stats{grid-template-columns:1fr}
+    .steps{grid-template-columns:1fr}
+    .gallery{grid-template-columns:1fr}
+    .tools{grid-template-columns:1fr}
+    .exp-item{grid-template-columns:34px 1fr}
+    .exp-item .when,.exp-item .more{display:none}
+    .exp-item .result{grid-column:2}
+    .thanks-word{letter-spacing:.18em;text-indent:.18em}
+  }
+  @media(prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .track{scroll-behavior:auto}
+    .marquee-track{animation:none}
+    .gallery figure,.tilt{transform:none}
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#gioi-thieu">Bỏ qua tới phần giới thiệu</a>
+
+<header class="topbar">
+  <a class="brand" href="#trang-chu"><b><i>◆</i> DUY TÂN</b><span class="clock"><span id="clock">--:--</span><span class="tz"> · Việt Nam, GMT+7</span></span></a>
+  <nav class="topnav" aria-label="Điều hướng chính">
+    <a href="#trang-chu" aria-current="true">Trang chủ</a>
+    <a href="#gioi-thieu">Giới thiệu</a>
+    <a href="#du-an">Dự án</a>
+    <a href="#dich-vu">Dịch vụ</a>
+    <a href="#lien-he">Liên hệ</a>
+  </nav>
+  <a class="top-contact" href="#lien-he">Liên hệ →</a>
+</header>
+
+<main>
+  <!-- HERO -->
+  <div class="hero" id="trang-chu">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div>
+          <div class="hashtags" aria-label="Chuyên môn và khu vực">
+            <span>#DigitalMarketing</span>
+            <span>#ContentCreator</span>
+            <span class="loc">• TP. Hồ Chí Minh</span>
+          </div>
+          <p class="ver">Ver 2026</p>
+          <p class="mega" aria-label="Portfolio">PORT<br>FOLIO</p>
+          <div class="tilt-row">
+            <span class="tilt t1">● THÂN DUY TÂN</span>
+            <span class="tilt t2">★ MARKETING</span>
+          </div>
+          <p class="svc-line">Content · Facebook Ads · Video &amp; Reels · TikTok · SEO · Fanpage</p>
+          <p class="lede">Marketing bằng câu chuyện thật và kết quả đo được. Mình làm marketing cho những thương hiệu cần được kể đúng giọng của nó — từ sân vườn và khu retreat ven sông đến lớp học nhạc và kênh TikTok du lịch.</p>
+          <div class="cta-row">
+            <a class="btn primary" href="#du-an">Xem dự án →</a>
+            <a class="btn ghost" href="mailto:thanduytan78@gmail.com">Gửi email →</a>
+          </div>
+        </div>
+        <div class="hero-photo">
+          <div class="glow" aria-hidden="true"></div>
+          <div class="ph" role="img" aria-label="Chỗ chờ ảnh chân dung của Duy Tân">Ảnh chân dung<br>— chờ bạn gửi —</div>
+        </div>
+      </div>
+      <div class="preview">
+        <a href="#kinh-nghiem"><p class="lbl">( Kinh nghiệm )</p><b>6 công việc</b><span>Từ 2023 tới nay, bấm để xem từng mục →</span></a>
+        <a href="#ky-nang"><p class="lbl">( Kỹ năng )</p><b>6 kỹ năng theo CV</b><span>Cùng bộ công cụ làm việc hằng ngày →</span></a>
+        <a href="#linh-vuc"><p class="lbl">( Lĩnh vực )</p><b>6 lĩnh vực</b><span>Mỗi lĩnh vực một giọng kể khác nhau →</span></a>
+      </div>
+    </div>
+    <div class="foliage" aria-hidden="true">
+      <svg viewBox="0 0 1440 70" preserveAspectRatio="none" role="presentation"><path fill="#0e1f14" d="M0,70 L0,45 Q120,10 260,42 T520,38 T780,46 T1040,34 T1300,44 T1440,32 L1440,70 Z"/></svg>
+    </div>
+  </div>
+
+  <!-- Dải tên thương hiệu -->
+  <div class="marquee" aria-label="Các thương hiệu đã làm việc cùng">
+    <div class="marquee-track">
+      <span>Natural Landscape <b>✦</b> An Việt Retreat <b>✦</b> Bò Cạp Vàng <b>✦</b> Happy Ranch <b>✦</b> Harmony <b>✦</b> Trị An Adventure <b>✦</b>&nbsp;</span>
+      <span aria-hidden="true">Natural Landscape <b>✦</b> An Việt Retreat <b>✦</b> Bò Cạp Vàng <b>✦</b> Happy Ranch <b>✦</b> Harmony <b>✦</b> Trị An Adventure <b>✦</b>&nbsp;</span>
+    </div>
+  </div>
+
+  <!-- GIỚI THIỆU -->
+  <section id="gioi-thieu" aria-labelledby="about-h">
+    <div class="wrap">
+      <p class="lbl">( Giới thiệu )</p>
+      <h2 id="about-h">Profile</h2>
+      <p class="hello">Xin chào, mình là Duy Tân.</p>
+      <div class="about-text">
+        <p>Mình mang theo tinh thần nhiệt huyết và đam mê của một người trẻ làm marketing, với nền tảng chuyên ngành Digital Marketing. Mình luôn tìm cơ hội để phát triển bản thân trong lĩnh vực này, áp dụng kiến thức đã học và học hỏi thêm từ các dự án thực tế.</p>
+        <p>Công việc hằng ngày của mình là đi tới tận nơi để ghi hình và chụp ảnh, rồi biến tư liệu thật thành nội dung kể đúng câu chuyện của từng thương hiệu — và theo dõi số liệu để biết nội dung đó có thực sự hiệu quả hay không.</p>
+      </div>
+      <div class="traits" aria-label="Cách làm việc">
+        <span>✦ Nhiệt huyết</span>
+        <span>✦ Ham học hỏi từ dự án thật</span>
+        <span>✦ Đi tận nơi ghi hình</span>
+        <span>✦ Đo bằng số liệu</span>
+      </div>
+
+      <div class="two-col">
+        <div>
+          <h3>Học vấn &amp; chứng chỉ</h3>
+          <div class="edu-card">
+            <b>Trường Đại học Văn Lang</b>
+            <p>Cử nhân Digital Marketing</p>
+            <p class="meta">2020 – 2024 · Xếp loại: Khá</p>
+          </div>
+          <div class="edu-card">
+            <b>The Fundamentals of Digital Marketing</b>
+            <div class="cert-ph ph" role="img" aria-label="Chỗ chờ ảnh chứng chỉ">Ảnh chứng chỉ<br>— chờ bạn gửi file —</div>
+            <p class="meta">CV chưa ghi đơn vị cấp và ngày cấp — bổ sung sau nếu bạn có thông tin.</p>
+          </div>
+          <h3 id="ky-nang" style="scroll-margin-top:76px">Kỹ năng</h3>
+          <div class="chips" aria-label="Kỹ năng theo CV">
+            <span class="chip">Lập kế hoạch &amp; sáng tạo nội dung</span>
+            <span class="chip">Viết content xu hướng</span>
+            <span class="chip">Phân tích nhu cầu khách hàng</span>
+            <span class="chip">Canva &amp; CapCut</span>
+            <span class="chip">ChatGPT</span>
+            <span class="chip">Làm việc nhóm</span>
+          </div>
+          <div class="tools" aria-label="Công cụ thường dùng">
+            <div class="tool"><span class="mono">Ca</span><span><b>Canva</b><span>Thiết kế hình ảnh bài đăng</span></span></div>
+            <div class="tool"><span class="mono">Cc</span><span><b>CapCut</b><span>Dựng video ngắn, Reels, TikTok</span></span></div>
+            <div class="tool"><span class="mono">GPT</span><span><b>ChatGPT</b><span>Hỗ trợ ý tưởng và viết nháp</span></span></div>
+            <div class="tool"><span class="mono">f</span><span><b>Facebook Ads</b><span>Chạy và tối ưu quảng cáo</span></span></div>
+          </div>
+        </div>
+        <div id="kinh-nghiem" style="scroll-margin-top:76px">
+          <h3>Kinh nghiệm làm việc</h3>
+          <p class="sub" style="margin-bottom:16px">Bấm vào từng mục để xem việc đã làm. Thứ tự từ mới nhất, sửa được sau.</p>
+          <ul class="exp-list">
+            <li><button class="exp-item" data-detail="bcv" type="button"><span class="num">1</span><span><b>Khu du lịch Bò Cạp Vàng &amp; An Việt Retreat</b><span class="role">Freelance Social Media Content Creator</span></span><span class="when">T8/2026 – Nay</span><span class="result">Nội dung riêng cho từng thương hiệu</span><span class="more">Chi tiết →</span></button></li>
+            <li><button class="exp-item" data-detail="happy" type="button"><span class="num">2</span><span><b>Happy Ranch Trị An</b><span class="role">Freelance Social Media Content Creator</span></span><span class="when">T4/2026 – T8/2026</span><span class="result">TikTok hơn 2.000 followers organic sau 3 tháng</span><span class="more">Chi tiết →</span></button></li>
+            <li><button class="exp-item" data-detail="nl" type="button"><span class="num">3</span><span><b>Công ty Cảnh Quan Tự Nhiên</b><span class="role">Marketing tổng hợp</span></span><span class="when">T11/2025 – Nay</span><span class="result">Vận hành fanpage Natural Landscape + Facebook Ads</span><span class="more">Chi tiết →</span></button></li>
+            <li><button class="exp-item" data-detail="harmony" type="button"><span class="num">4</span><span><b>Công ty Harmony – School of Music</b><span class="role">Marketing tổng hợp</span></span><span class="when">T2/2025 – 10/2025</span><span class="result">Giảm 40% chi phí mỗi lượt chuyển đổi</span><span class="more">Chi tiết →</span></button></li>
+            <li><button class="exp-item" data-detail="megas" type="button"><span class="num">5</span><span><b>Công ty Cổ phần MEGAS</b><span class="role">Sale</span></span><span class="when">T5/2024 – T12/2024</span><span class="result">Tìm khách qua hội nhóm, tư vấn khách đi xem phòng</span><span class="more">Chi tiết →</span></button></li>
+            <li><button class="exp-item" data-detail="trian" type="button"><span class="num">6</span><span><b>Công ty Du lịch Trị An Adventure</b><span class="role">Content Marketing</span></span><span class="when">T4/2023 – T4/2024</span><span class="result">Fanpage từ 6.000 lên hơn 10.000 follows</span><span class="more">Chi tiết →</span></button></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KẾT QUẢ -->
+  <section aria-labelledby="stats-h">
+    <div class="wrap">
+      <p class="lbl">( Kết quả )</p>
+      <h2 id="stats-h">Số liệu thật, lấy đúng từ CV</h2>
+      <p class="sub">Không phải số liệu minh họa. Mỗi con số dưới đây đều ghi rõ nó đến từ công việc nào.</p>
+      <div class="stats">
+        <article class="stat"><p class="big">10.000+</p><p>follows trên fanpage Trị An Adventure</p><p class="src">Từ 6.000 follows ban đầu · T4/2023 – T4/2024</p></article>
+        <article class="stat"><p class="big">2.000+</p><p>followers TikTok Happy Ranch sau 3 tháng</p><p class="src">Hoàn toàn organic, không quảng cáo trả phí</p></article>
+        <article class="stat"><p class="big">100.000+</p><p>lượt xem mỗi video TikTok tiêu biểu</p><p class="src">Nhiều video đạt mức này tại Happy Ranch</p></article>
+        <article class="stat"><p class="big">−40%</p><p>chi phí quảng cáo mỗi lượt chuyển đổi</p><p class="src">Tại Harmony · tỉ lệ chuyển đổi tăng 20–30% mỗi chiến dịch</p></article>
+      </div>
+      <p class="stat-note">Nếu bạn có ảnh chụp màn hình chứng minh các con số này và thoải mái công khai, gửi mình để gắn vào trang chi tiết từng dự án.</p>
+    </div>
+  </section>
+
+  <!-- LĨNH VỰC -->
+  <section id="linh-vuc" aria-labelledby="fields-h">
+    <div class="wrap">
+      <p class="lbl">( Lĩnh vực )</p>
+      <h2 id="fields-h">Kinh nghiệm đa ngành</h2>
+      <p class="sub">Sáu lĩnh vực từ sáu công việc trong CV. Mỗi lĩnh vực một tệp khách và một giọng kể khác nhau.</p>
+      <ol class="fields">
+        <li><span class="n">01</span><span><b>Du lịch &amp; tour</b><span class="note">Fanpage, tour theo nhu cầu khách, website và SEO.</span></span><span class="job">Trị An Adventure</span></li>
+        <li><span class="n">02</span><span><b>Bán hàng &amp; tư vấn phòng</b><span class="note">Tìm khách qua hội nhóm, tư vấn khách đi xem phòng.</span></span><span class="job">MEGAS</span></li>
+        <li><span class="n">03</span><span><b>Giáo dục âm nhạc</b><span class="note">Nội dung fanpage, video lớp học, quảng cáo theo từng lớp.</span></span><span class="job">Harmony</span></li>
+        <li><span class="n">04</span><span><b>Cảnh quan &amp; sân vườn</b><span class="note">Nội dung công trình thật, fanpage và Facebook Ads tìm khách.</span></span><span class="job">Natural Landscape</span></li>
+        <li><span class="n">05</span><span><b>Du lịch sinh thái &amp; retreat</b><span class="note">Teambuilding bắt trend và retreat theo định vị wellness.</span></span><span class="job">Bò Cạp Vàng &amp; An Việt</span></li>
+        <li><span class="n">06</span><span><b>Trang trại &amp; trải nghiệm</b><span class="note">TikTok organic, trải nghiệm thiên nhiên và nghỉ dưỡng.</span></span><span class="job">Happy Ranch</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- DỰ ÁN -->
+  <section id="du-an" aria-labelledby="work-h">
+    <div class="wrap">
+      <p class="lbl">( Dự án )</p>
+      <h2 id="work-h">Sáu thương hiệu, sáu giọng kể khác nhau</h2>
+      <p class="sub">Kéo ngang hoặc bấm mũi tên để xem. Bấm Chi tiết để đọc việc đã làm và kết quả của từng dự án. Ảnh trong bản này là khối chờ thay.</p>
+      <div class="carousel">
+        <div class="track" id="track">
+          <article class="proj">
+            <div class="thumb t1 ph" role="img" aria-label="Chỗ chờ ảnh dự án Natural Landscape"><span class="idx">01</span>Ảnh công trình<br>Natural Landscape</div>
+            <div class="body"><h3>Natural Landscape</h3><p class="meta">Marketing tổng hợp · T11/2025 – Nay</p><p>Thiết kế và thi công cảnh quan tại TP.HCM. Vận hành fanpage, chạy Facebook Ads và làm nội dung từ các công trình thật.</p><button class="detail-btn" data-detail="nl" type="button">Chi tiết →</button></div>
+          </article>
+          <article class="proj">
+            <div class="thumb t2 ph" role="img" aria-label="Chỗ chờ ảnh An Việt Retreat"><span class="idx">02</span>Ảnh khu<br>An Việt Retreat</div>
+            <div class="body"><h3>An Việt Retreat</h3><p class="meta">Freelance Content · T8/2026 – Nay</p><p>Khu glamping và retreat ven sông. Nội dung theo định vị wellness: Thân Khỏe, Tâm An, Trí Sáng.</p><button class="detail-btn" data-detail="anviet" type="button">Chi tiết →</button></div>
+          </article>
+          <article class="proj">
+            <div class="thumb t3 ph" role="img" aria-label="Chỗ chờ ảnh Bò Cạp Vàng"><span class="idx">03</span>Ảnh khu<br>Bò Cạp Vàng</div>
+            <div class="body"><h3>Khu du lịch Bò Cạp Vàng</h3><p class="meta">Freelance Content · T8/2026 – Nay</p><p>Khu du lịch sinh thái và teambuilding. Content bắt trend nhanh, hài có duyên, đúng nhịp của giới trẻ.</p><button class="detail-btn" data-detail="bcv-only" type="button">Chi tiết →</button></div>
+          </article>
+          <article class="proj">
+            <div class="thumb t4 ph" role="img" aria-label="Chỗ chờ ảnh Happy Ranch"><span class="idx">04</span>Ảnh trang trại<br>Happy Ranch</div>
+            <div class="body"><h3>Happy Ranch Trị An</h3><p class="meta">Freelance Content · T4/2026 – T8/2026</p><p>Xây kênh TikTok từ đầu theo hướng trẻ trung, gần gũi, tập trung vào trải nghiệm thiên nhiên và nghỉ dưỡng.</p><button class="detail-btn" data-detail="happy" type="button">Chi tiết →</button></div>
+          </article>
+          <article class="proj">
+            <div class="thumb t5 ph" role="img" aria-label="Chỗ chờ ảnh Harmony"><span class="idx">05</span>Ảnh lớp học<br>Harmony</div>
+            <div class="body"><h3>Harmony – School of Music</h3><p class="meta">Marketing tổng hợp · T2/2025 – 10/2025</p><p>Trường dạy nhạc. Nội dung fanpage, video lớp học và quảng cáo Facebook cho từng lớp.</p><button class="detail-btn" data-detail="harmony" type="button">Chi tiết →</button></div>
+          </article>
+          <article class="proj">
+            <div class="thumb t6 ph" role="img" aria-label="Chỗ chờ ảnh Trị An Adventure"><span class="idx">06</span>Ảnh tour<br>Trị An Adventure</div>
+            <div class="body"><h3>Trị An Adventure</h3><p class="meta">Content Marketing · T4/2023 – T4/2024</p><p>Công ty du lịch. Quản lý fanpage, tư vấn và tổ chức tour, xây website và tối ưu SEO.</p><button class="detail-btn" data-detail="trian" type="button">Chi tiết →</button></div>
+          </article>
+        </div>
+        <div class="car-nav">
+          <button class="car-btn" id="prevBtn" type="button" aria-label="Dự án trước">‹</button>
+          <div class="dots" id="dots" role="tablist" aria-label="Chọn dự án"></div>
+          <button class="car-btn" id="nextBtn" type="button" aria-label="Dự án tiếp theo">›</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DỊCH VỤ -->
+  <section id="dich-vu" aria-labelledby="svc-h">
+    <div class="wrap">
+      <p class="lbl">( Dịch vụ )</p>
+      <h2 id="svc-h">Bạn cần mình làm gì?</h2>
+      <p class="sub">Nhận làm cho khách hospitality và doanh nghiệp nhỏ, qua studio Mekong Content Studio. Nội dung phần này lấy từ bản mẫu trước, sửa sau theo ý bạn.</p>
+      <div class="svc-grid">
+        <article class="svc"><b>Gói caption mạng xã hội</b><p>Caption kể chuyện, ngắn, có gu, đúng giọng thương hiệu — không liệt kê tính năng khô khan.</p><p class="fit">Phù hợp: fanpage cần giọng kể ổn định mỗi ngày.</p><a class="go" href="https://www.fiverr.com/tan_marketingg" target="_blank" rel="noopener">Đặt qua Fiverr →</a></article>
+        <article class="svc"><b>Content fanpage 30 ngày</b><p>Kế hoạch, caption và hình ảnh đồng bộ theo từng chủ đề, xoay vòng để page không bị một màu.</p><p class="fit">Phù hợp: thương hiệu muốn vận hành page bài bản cả tháng.</p><a class="go" href="https://www.fiverr.com/tan_marketingg" target="_blank" rel="noopener">Đặt qua Fiverr →</a></article>
+        <article class="svc"><b>Dựng Reels / TikTok</b><p>Cắt dựng video ngắn từ footage thật của khách, mở đầu thu hút trong vài giây đầu.</p><p class="fit">Phù hợp: khu du lịch, retreat, lớp học có sẵn tư liệu quay.</p><a class="go" href="https://www.fiverr.com/tan_marketingg" target="_blank" rel="noopener">Đặt qua Fiverr →</a></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CÁCH LÀM VIỆC -->
+  <section aria-labelledby="process-h">
+    <div class="wrap">
+      <p class="lbl">( Cách làm việc )</p>
+      <h2 id="process-h">Bốn bước, làm thật và đo được</h2>
+      <p class="sub">Khung quy trình rút từ cách làm việc trong CV. Bạn sửa lại câu chữ sau cho đúng ý mình.</p>
+      <ol class="steps">
+        <li><b>Lắng nghe &amp; phân tích</b><p>Phân tích nhu cầu khách hàng và thị trường, chọn target phù hợp cho từng sản phẩm và lớp học.</p></li>
+        <li><b>Lên kế hoạch &amp; sáng tạo</b><p>Lập kế hoạch và sáng tạo nội dung theo định vị riêng của từng thương hiệu, không dùng chung một giọng.</p></li>
+        <li><b>Sản xuất</b><p>Trực tiếp đến địa điểm để ghi hình và chụp ảnh, dựng hình ảnh và video, viết content theo xu hướng.</p></li>
+        <li><b>Đo lường &amp; tối ưu</b><p>Theo dõi ngân sách, CTR, CPC, CPM, chi phí tin nhắn và chất lượng khách, rồi tối ưu theo số liệu thật.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- THƯ VIỆN ẢNH -->
+  <section id="thu-vien" aria-labelledby="gal-h">
+    <div class="wrap">
+      <p class="lbl">( Thư viện ảnh )</p>
+      <h2 id="gal-h">Tư liệu thật từ hiện trường</h2>
+      <p class="sub">Bấm vào ảnh để xem lớn. Khung đang chờ ảnh thật, mỗi ảnh sẽ có caption khi thay vào.</p>
+      <div class="gallery">
+        <figure data-lightbox="Thi công sân vườn — Natural Landscape" tabindex="0" role="button" aria-label="Xem lớn: thi công sân vườn"><div class="ph t1" role="img" aria-label="Chỗ chờ ảnh thi công sân vườn">Ảnh công trình</div><figcaption>Thi công sân vườn<span>Natural Landscape — chờ ảnh</span></figcaption></figure>
+        <figure data-lightbox="Chèo SUP và teambuilding — Bò Cạp Vàng" tabindex="0" role="button" aria-label="Xem lớn: chèo SUP và teambuilding"><div class="ph t3" role="img" aria-label="Chỗ chờ ảnh chèo SUP">Ảnh hoạt động</div><figcaption>Chèo SUP và teambuilding<span>Bò Cạp Vàng — chờ ảnh</span></figcaption></figure>
+        <figure data-lightbox="Hồ bơi và lều trại — An Việt Retreat" tabindex="0" role="button" aria-label="Xem lớn: hồ bơi và lều trại"><div class="ph t2" role="img" aria-label="Chỗ chờ ảnh hồ bơi An Việt">Ảnh khu nghỉ</div><figcaption>Hồ bơi và lều trại<span>An Việt Retreat — chờ ảnh</span></figcaption></figure>
+        <figure data-lightbox="Không gian và trải nghiệm — Happy Ranch" tabindex="0" role="button" aria-label="Xem lớn: không gian Happy Ranch"><div class="ph t4" role="img" aria-label="Chỗ chờ ảnh Happy Ranch">Ảnh trang trại</div><figcaption>Không gian và trải nghiệm<span>Happy Ranch — chờ ảnh</span></figcaption></figure>
+        <figure data-lightbox="Lớp học và video — Harmony" tabindex="0" role="button" aria-label="Xem lớn: lớp học Harmony"><div class="ph t5" role="img" aria-label="Chỗ chờ ảnh lớp học Harmony">Ảnh lớp học</div><figcaption>Lớp học và video<span>Harmony — chờ ảnh</span></figcaption></figure>
+        <figure data-lightbox="Đoàn khách và tour — Trị An Adventure" tabindex="0" role="button" aria-label="Xem lớn: đoàn khách Trị An"><div class="ph t6" role="img" aria-label="Chỗ chờ ảnh tour Trị An">Ảnh tour</div><figcaption>Đoàn khách và tour<span>Trị An Adventure — chờ ảnh</span></figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- Dải dịch vụ -->
+  <div class="marquee" aria-label="Các dịch vụ cung cấp">
+    <div class="marquee-track">
+      <span>Content Fanpage <b>✦</b> Facebook Ads <b>✦</b> Reels &amp; TikTok <b>✦</b> SEO &amp; Website <b>✦</b> Quay &amp; Chụp Hiện Trường <b>✦</b>&nbsp;</span>
+      <span aria-hidden="true">Content Fanpage <b>✦</b> Facebook Ads <b>✦</b> Reels &amp; TikTok <b>✦</b> SEO &amp; Website <b>✦</b> Quay &amp; Chụp Hiện Trường <b>✦</b>&nbsp;</span>
+    </div>
+  </div>
+
+  <!-- LIÊN HỆ -->
+  <section id="lien-he" aria-labelledby="contact-h">
+    <div class="wrap">
+      <div class="thanks">
+        <p class="thanks-word" aria-label="Cảm ơn">CẢM ƠN</p>
+        <p class="ready">Sẵn sàng hợp tác cho các dự án mới.</p>
+      </div>
+      <div class="contact-box">
+        <p class="lbl">( Liên hệ )</p>
+        <h2 id="contact-h">Kết nối với mình nhé</h2>
+        <p>Bạn đang tìm một người làm marketing kể đúng giọng thương hiệu, đi tận nơi ghi hình và đo kết quả bằng số liệu? Nhắn cho mình về thương hiệu của bạn và điều bạn muốn đạt được.</p>
+        <div class="cta-row">
+          <a class="btn primary" href="mailto:thanduytan78@gmail.com">Gửi email →</a>
+          <button class="btn copy-btn" id="copyEmail" type="button">Sao chép email</button>
+          <a class="btn ghost" href="https://www.fiverr.com/tan_marketingg" target="_blank" rel="noopener">Xem Fiverr →</a>
+        </div>
+        <div class="findme">
+          <a href="https://www.facebook.com/sanvuonhcm" target="_blank" rel="noopener">Facebook · Natural Landscape</a>
+          <span>An Việt Retreat · link sẽ thêm sau</span>
+          <span>Bò Cạp Vàng · link sẽ thêm sau</span>
+        </div>
+        <p class="contact-note">Email trên nút là email trong CV, đang chờ bạn xác nhận. Bản này chưa hiển thị số điện thoại công khai.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  © 2026 Thân Duy Tân — Bản v3 nền tối, chưa đăng lên GitHub. Nội dung theo CV ngày 12/11/2026.<br>
+  <a href="#trang-chu">Về đầu trang ↑</a>
+</footer>
+
+<dialog id="detailDialog" aria-labelledby="dlgTitle">
+  <div class="dlg-head">
+    <div><h3 id="dlgTitle"></h3><p class="meta" id="dlgMeta"></p></div>
+    <button class="dlg-close" id="dlgClose" type="button" aria-label="Đóng">✕</button>
+  </div>
+  <div class="dlg-body">
+    <div class="ph" id="dlgThumb" role="img" aria-label="Chỗ chờ ảnh dự án"></div>
+    <p id="dlgIntro" style="margin-bottom:14px"></p>
+    <ul id="dlgList"></ul>
+    <div class="chips" id="dlgChips"></div>
+  </div>
+</dialog>
+
+<dialog id="lightbox" aria-labelledby="lbCap">
+  <div class="dlg-head">
+    <div><h3 id="lbTitle">Xem ảnh</h3></div>
+    <button class="dlg-close" id="lbClose" type="button" aria-label="Đóng">✕</button>
+  </div>
+  <div class="dlg-body">
+    <div class="ph t1" id="lbThumb" role="img" aria-label="Chỗ chờ ảnh thật">Ảnh thật<br>— chờ bạn gửi —</div>
+    <figcaption id="lbCap"></figcaption>
+  </div>
+</dialog>
+
+<script>
+var DATA = {
+  nl: {title:"Natural Landscape", role:"Marketing tổng hợp", period:"T11/2025 – Nay", thumb:"Ảnh công trình — Natural Landscape", cls:"t1",
+    intro:"Công ty thiết kế và thi công cảnh quan tại TP.HCM, thương hiệu Natural Landscape.",
+    bullets:["Lên ý tưởng, viết nội dung bài đăng Facebook, nội dung giới thiệu dự án và dịch vụ.","Quản lý và triển khai nội dung fanpage, xây dựng hình ảnh thương hiệu Natural Landscape.","Quay dựng, sản xuất hình ảnh và video.","Lên kế hoạch, thiết lập và triển khai quảng cáo Facebook Ads để thu hút khách hàng tiềm năng.","Theo dõi, phân tích và tối ưu quảng cáo dựa trên ngân sách, CTR, CPC, CPM, chi phí tin nhắn và chất lượng khách hàng.","Theo dõi lượng khách quan tâm, đánh giá chất lượng tin nhắn và hỗ trợ quá trình chuyển đổi khách hàng tiềm năng.","Xây dựng nội dung truyền thông cho các công trình thực tế, giới thiệu giải pháp thiết kế và thi công cảnh quan."],
+    tools:["Facebook Ads","Content","Video","Fanpage"]},
+  anviet: {title:"An Việt Retreat", role:"Freelance Social Media Content Creator", period:"T8/2026 – Nay", thumb:"Ảnh khu — An Việt Retreat", cls:"t2",
+    intro:"Khu glamping và retreat ven sông tại Đại Phước, Đồng Nai. Cùng mục công việc với Bò Cạp Vàng trong CV, tách riêng ở đây để kể đúng giọng từng thương hiệu.",
+    bullets:["Sáng tạo và triển khai nội dung truyền thông hình ảnh, video trên mạng xã hội.","Phát triển ý tưởng, concept, tiêu đề và nội dung bài đăng phù hợp với định vị thương hiệu và nhóm khách hàng mục tiêu.","Trực tiếp đến địa điểm để ghi hình, chụp ảnh và sản xuất tư liệu truyền thông.","Định hướng nội dung theo wellness: Thân Khỏe, Tâm An, Trí Sáng."],
+    tools:["Content","Video","Reels"]},
+  "bcv-only": {title:"Khu du lịch Bò Cạp Vàng", role:"Freelance Social Media Content Creator", period:"T8/2026 – Nay", thumb:"Ảnh khu — Bò Cạp Vàng", cls:"t3",
+    intro:"Khu du lịch sinh thái và teambuilding tại Nhơn Trạch, Đồng Nai. Cùng mục công việc với An Việt Retreat trong CV, tách riêng ở đây để kể đúng giọng từng thương hiệu.",
+    bullets:["Sáng tạo và triển khai nội dung truyền thông hình ảnh, video trên mạng xã hội.","Phát triển ý tưởng, concept, tiêu đề và nội dung bài đăng phù hợp với định vị thương hiệu và nhóm khách hàng mục tiêu.","Trực tiếp đến địa điểm để ghi hình, chụp ảnh và sản xuất tư liệu truyền thông.","Định hướng nội dung teambuilding: bắt trend nhanh, hài có duyên, đúng nhịp của giới trẻ."],
+    tools:["Content","Video","Teambuilding"]},
+  bcv: {title:"Bò Cạp Vàng & An Việt Retreat", role:"Freelance Social Media Content Creator", period:"T8/2026 – Nay", thumb:"Ảnh khu — Bò Cạp Vàng & An Việt", cls:"t3",
+    intro:"Một mục công việc trong CV, phụ trách nội dung cho hai thương hiệu cùng quần thể.",
+    bullets:["Sáng tạo và triển khai nội dung truyền thông hình ảnh, video trên mạng xã hội.","Phát triển ý tưởng, concept, tiêu đề và nội dung bài đăng phù hợp với định vị thương hiệu và nhóm khách hàng mục tiêu.","Trực tiếp đến địa điểm để ghi hình, chụp ảnh và sản xuất tư liệu truyền thông.","Định hướng thông điệp và phong cách nội dung riêng cho từng thương hiệu: Bò Cạp Vàng hài có duyên và bắt trend; An Việt nhẹ nhàng theo wellness."],
+    tools:["Content","Video","Reels"]},
+  happy: {title:"Happy Ranch Trị An", role:"Freelance Social Media Content Creator", period:"T4/2026 – T8/2026", thumb:"Ảnh trang trại — Happy Ranch", cls:"t4",
+    intro:"Trang trại và điểm du lịch trải nghiệm tại Trị An.",
+    bullets:["Xây dựng và phát triển kênh TikTok từ đầu, đạt hơn 2.000 followers sau 3 tháng, hoàn toàn bằng phương pháp organic, không dùng quảng cáo trả phí.","Sản xuất nhiều video TikTok đạt 100.000+ lượt xem mỗi video.","Xây dựng chiến lược nội dung đa nền tảng, định hướng lại hình ảnh thương hiệu theo hướng trẻ trung, gần gũi, tập trung vào trải nghiệm thiên nhiên và du lịch nghỉ dưỡng.","Lên ý tưởng, sáng tạo nội dung và trực tiếp sản xuất hình ảnh, video giới thiệu không gian, dịch vụ và hoạt động trải nghiệm.","Triển khai nội dung tiếp cận khách hàng tiềm năng, khơi gợi nhu cầu tham quan và thúc đẩy khách đến trải nghiệm thực tế."],
+    tools:["TikTok","Video","Content"]},
+  harmony: {title:"Harmony – School of Music", role:"Marketing tổng hợp", period:"T2/2025 – 10/2025", thumb:"Ảnh lớp học — Harmony", cls:"t5",
+    intro:"Trường dạy nhạc.",
+    bullets:["Xây dựng chiến lược và triển khai nội dung fanpage, tăng tương tác và thu hút khách hàng.","Thiết kế, quay dựng hình ảnh và video lớp học.","Triển khai, theo dõi và tối ưu chiến dịch quảng cáo Facebook; giảm 40% chi phí quảng cáo mỗi lượt chuyển đổi.","Phân tích thị trường, chọn target phù hợp cho từng lớp học; tỉ lệ chuyển đổi tăng 20–30% mỗi chiến dịch.","Phát triển và quản lý nội dung website, nâng cao trải nghiệm người dùng và độ nhận diện thương hiệu."],
+    tools:["Facebook Ads","Content","Video","Website"]},
+  megas: {title:"Công ty Cổ phần MEGAS", role:"Sale", period:"T5/2024 – T12/2024", thumb:"Ảnh hoặc logo — MEGAS", cls:"t6",
+    intro:"Vai trò sale, tìm kiếm và tư vấn khách hàng.",
+    bullets:["Đăng bài, tạo content tìm kiếm khách trên các hội nhóm.","Tư vấn, hỗ trợ khách đi xem phòng."],
+    tools:["Content","Tư vấn khách hàng"]},
+  trian: {title:"Trị An Adventure", role:"Content Marketing", period:"T4/2023 – T4/2024", thumb:"Ảnh tour — Trị An Adventure", cls:"t6",
+    intro:"Công ty du lịch.",
+    bullets:["Quản lý fanpage từ 6.000 follows, tăng trưởng lên hơn 10.000 follows trên Facebook.","Tư vấn, thiết kế và tổ chức các chương trình tour phù hợp với nhu cầu khách hàng.","Lên chiến dịch quảng cáo trên fanpage.","Xây dựng website, tối ưu hóa SEO.","Quay/chụp và chỉnh sửa video cơ bản cho các đoàn khách, phục vụ hoạt động truyền thông của công ty."],
+    tools:["Fanpage","SEO","Website","Video"]}
+};
+var dialog = document.getElementById("detailDialog");
+function openDetail(key){
+  var d = DATA[key];
+  if(!d) return;
+  document.getElementById("dlgTitle").textContent = d.title;
+  document.getElementById("dlgMeta").textContent = d.role + " · " + d.period;
+  var th = document.getElementById("dlgThumb");
+  th.textContent = d.thumb + " — chờ ảnh thật";
+  th.className = "ph " + d.cls;
+  document.getElementById("dlgIntro").textContent = d.intro;
+  var ul = document.getElementById("dlgList");
+  ul.innerHTML = "";
+  d.bullets.forEach(function(b){ var li=document.createElement("li"); li.textContent=b; ul.appendChild(li); });
+  var chips = document.getElementById("dlgChips");
+  chips.innerHTML = "";
+  d.tools.forEach(function(t){ var s=document.createElement("span"); s.className="chip"; s.textContent=t; chips.appendChild(s); });
+  dialog.showModal();
+}
+document.querySelectorAll("[data-detail]").forEach(function(el){
+  el.addEventListener("click", function(){ openDetail(el.getAttribute("data-detail")); });
+});
+document.getElementById("dlgClose").addEventListener("click", function(){ dialog.close(); });
+dialog.addEventListener("click", function(e){ if(e.target === dialog) dialog.close(); });
+
+/* Lightbox thư viện ảnh */
+var lightbox = document.getElementById("lightbox");
+function openLightbox(fig){
+  document.getElementById("lbCap").textContent = fig.getAttribute("data-lightbox") + " — ảnh thật sẽ thay vào đây.";
+  var ph = fig.querySelector(".ph");
+  var lbThumb = document.getElementById("lbThumb");
+  lbThumb.className = ph.className;
+  lbThumb.id = "lbThumb";
+  lightbox.showModal();
+}
+document.querySelectorAll("[data-lightbox]").forEach(function(fig){
+  fig.addEventListener("click", function(){ openLightbox(fig); });
+  fig.addEventListener("keydown", function(e){ if(e.key === "Enter" || e.key === " "){ e.preventDefault(); openLightbox(fig); } });
+});
+document.getElementById("lbClose").addEventListener("click", function(){ lightbox.close(); });
+lightbox.addEventListener("click", function(e){ if(e.target === lightbox) lightbox.close(); });
+
+/* Đồng hồ giờ Việt Nam trên thanh trên */
+var clockEl = document.getElementById("clock");
+function tickClock(){
+  try{
+    clockEl.textContent = new Date().toLocaleTimeString("vi-VN", {hour:"2-digit", minute:"2-digit", hour12:false, timeZone:"Asia/Ho_Chi_Minh"});
+  }catch(e){
+    var d = new Date();
+    clockEl.textContent = ("0"+d.getHours()).slice(-2) + ":" + ("0"+d.getMinutes()).slice(-2);
+  }
+}
+tickClock();
+setInterval(tickClock, 10000);
+
+/* Sao chép email */
+var copyBtn = document.getElementById("copyEmail");
+copyBtn.addEventListener("click", function(){
+  var email = "thanduytan78@gmail.com";
+  function done(){ copyBtn.textContent = "Đã sao chép ✓"; setTimeout(function(){ copyBtn.textContent = "Sao chép email"; }, 2000); }
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(email).then(done, function(){ copyBtn.textContent = email; });
+  }else{
+    copyBtn.textContent = email;
+  }
+});
+
+/* Scrollspy cho thanh trên */
+var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+var navLinks = document.querySelectorAll(".topnav a");
+var spy = new IntersectionObserver(function(entries){
+  entries.forEach(function(en){
+    if(en.isIntersecting){
+      navLinks.forEach(function(a){
+        a.setAttribute("aria-current", a.getAttribute("href") === "#" + en.target.id ? "true" : "false");
+      });
+    }
+  });
+}, {rootMargin:"-40% 0px -55% 0px"});
+["trang-chu","gioi-thieu","du-an","dich-vu","lien-he"].forEach(function(id){
+  var el = document.getElementById(id);
+  if(el) spy.observe(el);
+});
+
+/* Carousel: nút + chấm */
+var track = document.getElementById("track");
+var cards = track.querySelectorAll(".proj");
+var dotsWrap = document.getElementById("dots");
+cards.forEach(function(_, i){
+  var b = document.createElement("button");
+  b.type = "button";
+  b.setAttribute("aria-label", "Tới dự án " + (i + 1));
+  b.addEventListener("click", function(){
+    track.scrollTo({left: cards[i].offsetLeft - track.offsetLeft - 12, behavior: reduceMotion ? "auto" : "smooth"});
+  });
+  dotsWrap.appendChild(b);
+});
+var dots = dotsWrap.querySelectorAll("button");
+function updateDots(){
+  var idx = 0, best = Infinity;
+  cards.forEach(function(c, i){
+    var d = Math.abs((c.offsetLeft - track.offsetLeft) - track.scrollLeft);
+    if(d < best){ best = d; idx = i; }
+  });
+  dots.forEach(function(dt, i){ dt.setAttribute("aria-current", i === idx ? "true" : "false"); });
+}
+track.addEventListener("scroll", function(){ requestAnimationFrame(updateDots); }, {passive:true});
+updateDots();
+function step(dir){
+  var w = cards[0].offsetWidth + 20;
+  track.scrollBy({left: dir * w, behavior: reduceMotion ? "auto" : "smooth"});
+}
+document.getElementById("prevBtn").addEventListener("click", function(){ step(-1); });
+document.getElementById("nextBtn").addEventListener("click", function(){ step(1); });
+</script>
+</body>
+</html>
