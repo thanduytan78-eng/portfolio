@@ -112,10 +112,15 @@
     .polaroid-card {
       transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease;
     }
-    .polaroid-card:hover {
+    .polaroid-card:not(.scatter-card):hover {
       transform: rotate(0deg) translateY(-10px) scale(1.05) !important;
       z-index: 30;
       box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.25);
+    }
+    /* Scatter strip (Eka gallery): no hover at all, and no CSS transition
+       so the GSAP scroll-scrub drives the cards directly. */
+    #polaroid-strip .polaroid-card {
+      transition: none;
     }
     /* Arrow micro-interaction (Nguyen Duc Phuc signature) */
     .arrow-btn:hover .arrow-icon {
@@ -1387,40 +1392,35 @@
       }).join('');
       document.getElementById('tab-panel-awards').innerHTML = `<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">${polaroidHtml}</div>`;
       // Scattered collage (Eka-style) for the always-visible strip on desktop:
-      // photos only, tilted + overlapping; captions live in the click modal.
+      // photos only, tilted + overlapping, varied sizes; no captions, no
+      // hover, no click — the motion comes from the scroll-scrub below.
+      // left/top/rot = final resting spot (varied sizes, Eka-like overlap);
+      // fromX/fromY/fromO = clustered + faded entry state (rise from below,
+      // pulled toward the centre); exitX/exitY = drift + fade out at the end.
       const scatterSpots = [
-        { left: '2%', top: 10, rot: -6 },
-        { left: '18%', top: 42, rot: 4 },
-        { left: '36%', top: 0, rot: -3 },
-        { left: '54%', top: 32, rot: 6 },
-        { left: '70%', top: 6, rot: -5 },
-        { left: '8%', top: 252, rot: 5 },
-        { left: '26%', top: 282, rot: -7 },
-        { left: '44%', top: 242, rot: 3 },
-        { left: '62%', top: 276, rot: -4 },
-        { left: '74%', top: 246, rot: 7 },
-        { left: '14%', top: 482, rot: -4 },
-        { left: '34%', top: 512, rot: 6 },
-        { left: '55%', top: 486, rot: -6 },
-        { left: '72%', top: 506, rot: 3 }
+        { left: '2%',  top: 10,  w: 300, rot: -6, fromX: 240,  fromY: 180, fromO: 0.35, exitX: -30, exitY: -120 },
+        { left: '18%', top: 42,  w: 210, rot: 5,  fromX: 160,  fromY: 220, fromO: 0.40, exitX: 40,  exitY: -90 },
+        { left: '36%', top: 0,   w: 330, rot: -3, fromX: 0,    fromY: 260, fromO: 0.30, exitX: -20, exitY: -140 },
+        { left: '54%', top: 32,  w: 250, rot: 6,  fromX: -100, fromY: 190, fromO: 0.45, exitX: 70,  exitY: -100 },
+        { left: '70%', top: 6,   w: 260, rot: -5, fromX: -210, fromY: 170, fromO: 0.35, exitX: 50,  exitY: -110 },
+        { left: '8%',  top: 252, w: 220, rot: 4,  fromX: 220,  fromY: 150, fromO: 0.40, exitX: -40, exitY: -80 },
+        { left: '26%', top: 282, w: 300, rot: -7, fromX: 80,   fromY: 240, fromO: 0.30, exitX: 50,  exitY: -130 },
+        { left: '44%', top: 242, w: 190, rot: 3,  fromX: -20,  fromY: 200, fromO: 0.50, exitX: -40, exitY: -90 },
+        { left: '62%', top: 276, w: 270, rot: -5, fromX: -160, fromY: 180, fromO: 0.40, exitX: 60,  exitY: -120 },
+        { left: '74%', top: 246, w: 240, rot: 7,  fromX: -240, fromY: 160, fromO: 0.35, exitX: 50,  exitY: -100 },
+        { left: '14%', top: 482, w: 230, rot: -4, fromX: 180,  fromY: 210, fromO: 0.40, exitX: -30, exitY: -70 },
+        { left: '34%', top: 512, w: 190, rot: 6,  fromX: 50,   fromY: 230, fromO: 0.45, exitX: 30,  exitY: -110 },
+        { left: '55%', top: 486, w: 240, rot: -6, fromX: -110, fromY: 190, fromO: 0.35, exitX: 60,  exitY: -90 },
+        { left: '72%', top: 506, w: 210, rot: 3,  fromX: -220, fromY: 170, fromO: 0.40, exitX: 60,  exitY: -80 }
       ];
       const scatterHtml = portfolioData.polaroids.map((a, i) => {
         const spot = scatterSpots[i % scatterSpots.length];
         const imgSrc = a.imgId ? getMediaSrc(a.imgId) : '';
-        const hasVid = Boolean(a.videoId);
         return `
-          <button type="button" data-proof-title="${a.title}" data-proof-metric="${a.org}" data-proof-detail="${a.detail}" data-proof-img="${a.imgId || ''}" data-proof-video="${a.videoId || ''}" class="proof-trigger-btn text-left polaroid-card absolute bg-white p-3 rounded-2xl border border-slate-200 shadow-lg" style="left:${spot.left}; top:${spot.top}px; width:200px; transform: rotate(${spot.rot}deg);">
+          <div class="scatter-card polaroid-card absolute bg-white p-3 rounded-2xl border border-slate-200 shadow-lg" style="left:${spot.left}; top:${spot.top}px; width:${spot.w}px; transform: rotate(${spot.rot}deg);">
             ${imgSrc ? `
-              <div class="aspect-square rounded-xl overflow-hidden border border-slate-200 relative bg-slate-900">
-                <img src="${imgSrc}" alt="${a.title}" class="w-full h-full object-cover object-top" />
-                ${hasVid ? `
-                  <div class="absolute inset-0 bg-navy-950/35 flex items-center justify-center">
-                    <span class="w-11 h-11 rounded-full bg-red-600 text-white flex items-center justify-center shadow-lg text-base">▶</span>
-                  </div>
-                  <span class="absolute bottom-2 right-2 px-2 py-0.5 rounded bg-red-600 text-white text-[10px] font-mono font-bold">🎬 Phát Video</span>
-                ` : `
-                  <span class="absolute bottom-2 right-2 px-2 py-0.5 rounded bg-navy-950/85 text-white text-[10px] font-mono">🔍 Zoom</span>
-                `}
+              <div class="aspect-square rounded-xl overflow-hidden border border-slate-200 bg-slate-900">
+                <img src="${imgSrc}" alt="${a.title}" class="w-full h-full object-cover object-top" draggable="false" />
               </div>
             ` : `
               <div class="aspect-square rounded-xl bg-gradient-to-br from-navy-900 via-blue-900 to-slate-800 p-4 flex flex-col justify-between text-white">
@@ -1429,12 +1429,49 @@
                 <span class="text-[11px] font-mono text-slate-300">Thân Duy Tân</span>
               </div>
             `}
-          </button>
+          </div>
         `;
       }).join('');
       document.getElementById('polaroid-strip').innerHTML = `
-        <div class="relative hidden lg:block mx-auto max-w-6xl" style="height:720px;">${scatterHtml}</div>
+        <div class="relative hidden lg:block mx-auto max-w-6xl" style="height:780px;">${scatterHtml}</div>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:hidden">${polaroidHtml}</div>`;
+      // Eka gallery scrub (desktop only): photos start clustered near the
+      // centre + faded, then each one drifts out at its own speed and
+      // direction and fades in as you scroll; near the end of the section
+      // they drift further and fade out again. Scrolling back up reverses
+      // everything. No pin, no hover, no click on the strip.
+      if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+        gsap.registerPlugin(ScrollTrigger);
+        if (window.__galleryScrubRevert) window.__galleryScrubRevert();
+        const galleryMm = gsap.matchMedia();
+        window.__galleryScrubRevert = () => galleryMm.revert();
+        galleryMm.add('(min-width: 1024px)', () => {
+          const stripEl = document.getElementById('polaroid-strip');
+          const cards = stripEl ? stripEl.querySelectorAll('.scatter-card') : [];
+          if (!cards.length) return;
+          const galleryTl = gsap.timeline({
+            scrollTrigger: {
+              trigger: stripEl,
+              start: 'top 85%',
+              end: 'bottom 25%',
+              scrub: true
+            }
+          });
+          cards.forEach((card, i) => {
+            const s = scatterSpots[i % scatterSpots.length];
+            galleryTl.fromTo(card,
+              { x: s.fromX, y: s.fromY, opacity: s.fromO, rotation: s.rot },
+              { x: 0, y: 0, opacity: 1, rotation: s.rot, ease: 'none', duration: 0.5 }, 0);
+            galleryTl.to(card,
+              { x: s.exitX, y: s.exitY, opacity: 0.28, ease: 'none', duration: 0.5 }, 0.7);
+          });
+          return () => {
+            if (galleryTl.scrollTrigger) galleryTl.scrollTrigger.kill();
+            galleryTl.kill();
+            gsap.set(cards, { clearProps: 'x,y,opacity' });
+          };
+        });
+      }
     }
 
     function renderEducation() {
