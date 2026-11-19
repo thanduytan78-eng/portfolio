@@ -525,7 +525,7 @@
           <h3 class="font-display font-extrabold text-2xl sm:text-3xl text-navy-950 mt-1">Thư viện Video &amp; Minh chứng Thực chiến (Polaroid Gallery)</h3>
           <p class="text-xs text-slate-500 mt-1">Cuộn chậm để xem các tấm ảnh tản ra — mở tab Videos &amp; Polaroids để phát video hoặc xem ảnh lớn</p>
         </div>
-        <div id="polaroid-strip" class="px-2"></div>
+        <div id="polaroid-strip" style="position:relative; left:50%; transform:translateX(-50%); width:min(1560px,94vw);"></div>
         <div id="polaroid-strip-mobile" class="px-2"></div>
       </div>
     </section>
@@ -1405,20 +1405,20 @@
       // fromX/fromY/fromO = clustered + faded entry state (rise from below,
       // pulled toward the centre); exitX/exitY = drift + fade out at the end.
       const scatterSpots = [
-        { left: '2%',  top: 10,  w: 300, rot: -6, fromX: 240,  fromY: 180, fromO: 0.50, exitX: -30, exitY: -30 },
-        { left: '18%', top: 42,  w: 210, rot: 5,  fromX: 160,  fromY: 220, fromO: 0.55, exitX: 40,  exitY: -25 },
-        { left: '36%', top: 0,   w: 330, rot: -3, fromX: 0,    fromY: 260, fromO: 0.50, exitX: -20, exitY: -30 },
-        { left: '54%', top: 32,  w: 250, rot: 6,  fromX: -100, fromY: 190, fromO: 0.60, exitX: 70,  exitY: -25 },
-        { left: '70%', top: 6,   w: 260, rot: -5, fromX: -210, fromY: 170, fromO: 0.50, exitX: 50,  exitY: -25 },
-        { left: '8%',  top: 252, w: 220, rot: 4,  fromX: 220,  fromY: 150, fromO: 0.55, exitX: -40, exitY: -20 },
-        { left: '26%', top: 282, w: 300, rot: -7, fromX: 80,   fromY: 240, fromO: 0.50, exitX: 50,  exitY: -30 },
-        { left: '44%', top: 242, w: 190, rot: 3,  fromX: -20,  fromY: 200, fromO: 0.65, exitX: -40, exitY: -20 },
-        { left: '62%', top: 276, w: 270, rot: -5, fromX: -160, fromY: 180, fromO: 0.55, exitX: 60,  exitY: -25 },
-        { left: '74%', top: 246, w: 240, rot: 7,  fromX: -240, fromY: 160, fromO: 0.50, exitX: 50,  exitY: -25 },
-        { left: '14%', top: 482, w: 230, rot: -4, fromX: 180,  fromY: 210, fromO: 0.55, exitX: -30, exitY: -15 },
-        { left: '34%', top: 512, w: 190, rot: 6,  fromX: 50,   fromY: 230, fromO: 0.60, exitX: 30,  exitY: -25 },
-        { left: '55%', top: 486, w: 240, rot: -6, fromX: -110, fromY: 190, fromO: 0.50, exitX: 60,  exitY: -20 },
-        { left: '72%', top: 506, w: 210, rot: 3,  fromX: -220, fromY: 170, fromO: 0.55, exitX: 60,  exitY: -20 }
+        { left: '2%',  top: 10,  w: 300, rot: -6, fromX: 539,  fromY: 300, fromO: 0.35, exitX: -30, exitY: -30 },
+        { left: '18%', top: 42,  w: 210, rot: 5,  fromX: 355,  fromY: 330, fromO: 0.40, exitX: 40,  exitY: -25 },
+        { left: '36%', top: 0,   w: 330, rot: -3, fromX: 48,   fromY: 360, fromO: 0.30, exitX: -20, exitY: -30 },
+        { left: '54%', top: 32,  w: 250, rot: 6,  fromX: -168, fromY: 390, fromO: 0.45, exitX: 70,  exitY: -25 },
+        { left: '70%', top: 6,   w: 260, rot: -5, fromX: -398, fromY: 420, fromO: 0.35, exitX: 50,  exitY: -25 },
+        { left: '8%',  top: 252, w: 220, rot: 4,  fromX: 491,  fromY: 300, fromO: 0.40, exitX: -40, exitY: -20 },
+        { left: '26%', top: 282, w: 300, rot: -7, fromX: 202,  fromY: 330, fromO: 0.30, exitX: 50,  exitY: -30 },
+        { left: '44%', top: 242, w: 190, rot: 3,  fromX: -1,   fromY: 360, fromO: 0.45, exitX: -40, exitY: -20 },
+        { left: '62%', top: 276, w: 270, rot: -5, fromX: -290, fromY: 390, fromO: 0.35, exitX: 60,  exitY: -25 },
+        { left: '74%', top: 246, w: 240, rot: 7,  fromX: -445, fromY: 420, fromO: 0.40, exitX: 50,  exitY: -25 },
+        { left: '14%', top: 482, w: 230, rot: -4, fromX: 402,  fromY: 300, fromO: 0.35, exitX: -30, exitY: -15 },
+        { left: '34%', top: 512, w: 190, rot: 6,  fromX: 140,  fromY: 330, fromO: 0.45, exitX: 30,  exitY: -25 },
+        { left: '55%', top: 486, w: 240, rot: -6, fromX: -178, fromY: 360, fromO: 0.30, exitX: 60,  exitY: -20 },
+        { left: '72%', top: 506, w: 210, rot: 3,  fromX: -403, fromY: 390, fromO: 0.40, exitX: 60,  exitY: -20 }
       ];
       const scatterHtml = portfolioData.polaroids.map((a, i) => {
         const spot = scatterSpots[i % scatterSpots.length];
@@ -1440,15 +1440,19 @@
         `;
       }).join('');
       document.getElementById('polaroid-strip').innerHTML = `
-        <div class="strip-field relative mx-auto max-w-6xl" style="height:780px;">${scatterHtml}</div>`;
+        <div class="strip-field relative" style="height:780px; width:100%;">${scatterHtml}</div>`;
       document.getElementById('polaroid-strip-mobile').innerHTML = `
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">${polaroidHtml}</div>`;
-      // Eka gallery scrub (desktop only): photos start clustered near the
-      // centre + faded, then each one drifts out at its own speed and
-      // direction and fades in as you scroll; they stay fully clear through
-      // most of the section, then drift slightly and fade out as the section
-      // leaves. Scrolling back up reverses everything. No pin, no hover,
-      // no click on the strip.
+      // Eka gallery scrub (desktop only): photos start tightly clustered
+      // at the centre + faded + from below, then PUSH APART a long way
+      // (up to ~540px) and fade in as you scroll — the push spans half the
+      // scroll range so it is visible while the gallery fills the screen
+      // (the old 0.3 enter finished before the gallery was even visible,
+      // so the push was never seen); they stay fully clear while the
+      // gallery fills the screen, then drift slightly and fade out as the
+      // section leaves. Scrolling back up reverses everything. No pin, no
+      // hover, no click on the strip. The strip is widened to 1560px so the
+      // final spread is wide and airy like Eka's, not a dense central bunch.
       // Progress is driven from the strip's LIVE bounding rect on every
       // scroll frame — never from pre-measured trigger positions — so pin
       // spacers, font/image shifts or late layout can never shift the
@@ -1467,9 +1471,9 @@
             const s = scatterSpots[i % scatterSpots.length];
             galleryTl.fromTo(card,
               { x: s.fromX, y: s.fromY, opacity: s.fromO, rotation: s.rot },
-              { x: 0, y: 0, opacity: 1, rotation: s.rot, ease: 'none', duration: 0.3 }, 0);
+              { x: 0, y: 0, opacity: 1, rotation: s.rot, ease: 'none', duration: 0.8 }, 0);
             galleryTl.to(card,
-              { x: s.exitX, y: s.exitY, opacity: 0.3, ease: 'none', duration: 0.35 }, 0.75);
+              { x: s.exitX, y: s.exitY, opacity: 0.3, ease: 'none', duration: 0.35 }, 1.15);
           });
           let ticking = false;
           const update = () => {
