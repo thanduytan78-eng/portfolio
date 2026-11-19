@@ -514,7 +514,7 @@
           <h3 class="font-display font-extrabold text-2xl sm:text-3xl text-navy-950 mt-1">Thư viện Video &amp; Minh chứng Thực chiến (Polaroid Gallery)</h3>
           <p class="text-xs text-slate-500 mt-1">Nhấn vào bất kỳ tấm Polaroid nào để phát Video hoặc xem ảnh độ phân giải cao</p>
         </div>
-        <div id="polaroid-strip" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 px-2"></div>
+        <div id="polaroid-strip" class="px-2"></div>
       </div>
     </section>
 
@@ -1386,7 +1386,55 @@
         `;
       }).join('');
       document.getElementById('tab-panel-awards').innerHTML = `<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">${polaroidHtml}</div>`;
-      document.getElementById('polaroid-strip').innerHTML = polaroidHtml;
+      // Scattered collage (Eka-style) for the always-visible strip on desktop:
+      // photos only, tilted + overlapping; captions live in the click modal.
+      const scatterSpots = [
+        { left: '2%', top: 10, rot: -6 },
+        { left: '18%', top: 42, rot: 4 },
+        { left: '36%', top: 0, rot: -3 },
+        { left: '54%', top: 32, rot: 6 },
+        { left: '70%', top: 6, rot: -5 },
+        { left: '8%', top: 252, rot: 5 },
+        { left: '26%', top: 282, rot: -7 },
+        { left: '44%', top: 242, rot: 3 },
+        { left: '62%', top: 276, rot: -4 },
+        { left: '74%', top: 246, rot: 7 },
+        { left: '14%', top: 482, rot: -4 },
+        { left: '34%', top: 512, rot: 6 },
+        { left: '55%', top: 486, rot: -6 },
+        { left: '72%', top: 506, rot: 3 }
+      ];
+      const scatterHtml = portfolioData.polaroids.map((a, i) => {
+        const spot = scatterSpots[i % scatterSpots.length];
+        const imgSrc = a.imgId ? getMediaSrc(a.imgId) : '';
+        const hasVid = Boolean(a.videoId);
+        return `
+          <button type="button" data-proof-title="${a.title}" data-proof-metric="${a.org}" data-proof-detail="${a.detail}" data-proof-img="${a.imgId || ''}" data-proof-video="${a.videoId || ''}" class="proof-trigger-btn text-left polaroid-card absolute bg-white p-3 rounded-2xl border border-slate-200 shadow-lg" style="left:${spot.left}; top:${spot.top}px; width:200px; transform: rotate(${spot.rot}deg);">
+            ${imgSrc ? `
+              <div class="aspect-square rounded-xl overflow-hidden border border-slate-200 relative bg-slate-900">
+                <img src="${imgSrc}" alt="${a.title}" class="w-full h-full object-cover object-top" />
+                ${hasVid ? `
+                  <div class="absolute inset-0 bg-navy-950/35 flex items-center justify-center">
+                    <span class="w-11 h-11 rounded-full bg-red-600 text-white flex items-center justify-center shadow-lg text-base">▶</span>
+                  </div>
+                  <span class="absolute bottom-2 right-2 px-2 py-0.5 rounded bg-red-600 text-white text-[10px] font-mono font-bold">🎬 Phát Video</span>
+                ` : `
+                  <span class="absolute bottom-2 right-2 px-2 py-0.5 rounded bg-navy-950/85 text-white text-[10px] font-mono">🔍 Zoom</span>
+                `}
+              </div>
+            ` : `
+              <div class="aspect-square rounded-xl bg-gradient-to-br from-navy-900 via-blue-900 to-slate-800 p-4 flex flex-col justify-between text-white">
+                <span class="text-xs font-mono text-gold-300">${a.org}</span>
+                <div class="text-3xl">${a.icon}</div>
+                <span class="text-[11px] font-mono text-slate-300">Thân Duy Tân</span>
+              </div>
+            `}
+          </button>
+        `;
+      }).join('');
+      document.getElementById('polaroid-strip').innerHTML = `
+        <div class="relative hidden lg:block mx-auto max-w-6xl" style="height:720px;">${scatterHtml}</div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:hidden">${polaroidHtml}</div>`;
     }
 
     function renderEducation() {
