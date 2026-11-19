@@ -122,6 +122,12 @@
     #polaroid-strip .polaroid-card {
       transition: none;
     }
+    /* Strip visibility is plain CSS (not Tailwind lg: variants) so the
+       strip's measured height never depends on generated-utility timing. */
+    #polaroid-strip .strip-field { display: none; }
+    @media (min-width: 1024px) { #polaroid-strip .strip-field { display: block; } }
+    #polaroid-strip-mobile { display: block; }
+    @media (min-width: 1024px) { #polaroid-strip-mobile { display: none; } }
     /* Arrow micro-interaction (Nguyen Duc Phuc signature) */
     .arrow-btn:hover .arrow-icon {
       transform: translate(2px, -2px) rotate(12deg);
@@ -520,6 +526,7 @@
           <p class="text-xs text-slate-500 mt-1">Cuộn chậm để xem các tấm ảnh tản ra — mở tab Videos &amp; Polaroids để phát video hoặc xem ảnh lớn</p>
         </div>
         <div id="polaroid-strip" class="px-2"></div>
+        <div id="polaroid-strip-mobile" class="px-2"></div>
       </div>
     </section>
 
@@ -1398,20 +1405,20 @@
       // fromX/fromY/fromO = clustered + faded entry state (rise from below,
       // pulled toward the centre); exitX/exitY = drift + fade out at the end.
       const scatterSpots = [
-        { left: '2%',  top: 10,  w: 300, rot: -6, fromX: 240,  fromY: 180, fromO: 0.35, exitX: -30, exitY: -120 },
-        { left: '18%', top: 42,  w: 210, rot: 5,  fromX: 160,  fromY: 220, fromO: 0.40, exitX: 40,  exitY: -90 },
-        { left: '36%', top: 0,   w: 330, rot: -3, fromX: 0,    fromY: 260, fromO: 0.30, exitX: -20, exitY: -140 },
-        { left: '54%', top: 32,  w: 250, rot: 6,  fromX: -100, fromY: 190, fromO: 0.45, exitX: 70,  exitY: -100 },
-        { left: '70%', top: 6,   w: 260, rot: -5, fromX: -210, fromY: 170, fromO: 0.35, exitX: 50,  exitY: -110 },
-        { left: '8%',  top: 252, w: 220, rot: 4,  fromX: 220,  fromY: 150, fromO: 0.40, exitX: -40, exitY: -80 },
-        { left: '26%', top: 282, w: 300, rot: -7, fromX: 80,   fromY: 240, fromO: 0.30, exitX: 50,  exitY: -130 },
-        { left: '44%', top: 242, w: 190, rot: 3,  fromX: -20,  fromY: 200, fromO: 0.50, exitX: -40, exitY: -90 },
-        { left: '62%', top: 276, w: 270, rot: -5, fromX: -160, fromY: 180, fromO: 0.40, exitX: 60,  exitY: -120 },
-        { left: '74%', top: 246, w: 240, rot: 7,  fromX: -240, fromY: 160, fromO: 0.35, exitX: 50,  exitY: -100 },
-        { left: '14%', top: 482, w: 230, rot: -4, fromX: 180,  fromY: 210, fromO: 0.40, exitX: -30, exitY: -70 },
-        { left: '34%', top: 512, w: 190, rot: 6,  fromX: 50,   fromY: 230, fromO: 0.45, exitX: 30,  exitY: -110 },
-        { left: '55%', top: 486, w: 240, rot: -6, fromX: -110, fromY: 190, fromO: 0.35, exitX: 60,  exitY: -90 },
-        { left: '72%', top: 506, w: 210, rot: 3,  fromX: -220, fromY: 170, fromO: 0.40, exitX: 60,  exitY: -80 }
+        { left: '2%',  top: 10,  w: 300, rot: -6, fromX: 240,  fromY: 180, fromO: 0.50, exitX: -30, exitY: -30 },
+        { left: '18%', top: 42,  w: 210, rot: 5,  fromX: 160,  fromY: 220, fromO: 0.55, exitX: 40,  exitY: -25 },
+        { left: '36%', top: 0,   w: 330, rot: -3, fromX: 0,    fromY: 260, fromO: 0.50, exitX: -20, exitY: -30 },
+        { left: '54%', top: 32,  w: 250, rot: 6,  fromX: -100, fromY: 190, fromO: 0.60, exitX: 70,  exitY: -25 },
+        { left: '70%', top: 6,   w: 260, rot: -5, fromX: -210, fromY: 170, fromO: 0.50, exitX: 50,  exitY: -25 },
+        { left: '8%',  top: 252, w: 220, rot: 4,  fromX: 220,  fromY: 150, fromO: 0.55, exitX: -40, exitY: -20 },
+        { left: '26%', top: 282, w: 300, rot: -7, fromX: 80,   fromY: 240, fromO: 0.50, exitX: 50,  exitY: -30 },
+        { left: '44%', top: 242, w: 190, rot: 3,  fromX: -20,  fromY: 200, fromO: 0.65, exitX: -40, exitY: -20 },
+        { left: '62%', top: 276, w: 270, rot: -5, fromX: -160, fromY: 180, fromO: 0.55, exitX: 60,  exitY: -25 },
+        { left: '74%', top: 246, w: 240, rot: 7,  fromX: -240, fromY: 160, fromO: 0.50, exitX: 50,  exitY: -25 },
+        { left: '14%', top: 482, w: 230, rot: -4, fromX: 180,  fromY: 210, fromO: 0.55, exitX: -30, exitY: -15 },
+        { left: '34%', top: 512, w: 190, rot: 6,  fromX: 50,   fromY: 230, fromO: 0.60, exitX: 30,  exitY: -25 },
+        { left: '55%', top: 486, w: 240, rot: -6, fromX: -110, fromY: 190, fromO: 0.50, exitX: 60,  exitY: -20 },
+        { left: '72%', top: 506, w: 210, rot: 3,  fromX: -220, fromY: 170, fromO: 0.55, exitX: 60,  exitY: -20 }
       ];
       const scatterHtml = portfolioData.polaroids.map((a, i) => {
         const spot = scatterSpots[i % scatterSpots.length];
@@ -1433,13 +1440,16 @@
         `;
       }).join('');
       document.getElementById('polaroid-strip').innerHTML = `
-        <div class="relative hidden lg:block mx-auto max-w-6xl" style="height:780px;">${scatterHtml}</div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:hidden">${polaroidHtml}</div>`;
+        <div class="strip-field relative mx-auto max-w-6xl" style="height:780px;">${scatterHtml}</div>`;
+      document.getElementById('polaroid-strip-mobile').innerHTML = `
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">${polaroidHtml}</div>`;
       // Eka gallery scrub (desktop only): photos start clustered near the
       // centre + faded, then each one drifts out at its own speed and
-      // direction and fades in as you scroll; near the end of the section
-      // they drift further and fade out again. Scrolling back up reverses
-      // everything. No pin, no hover, no click on the strip.
+      // direction and fades in as you scroll; they stay fully clear through
+      // most of the section, then drift slightly and fade out as the section
+      // leaves. Scrolling back up reverses everything. No pin, no hover,
+      // no click on the strip. The trigger is #polaroid-strip only (the
+      // mobile grid lives in a separate element) so its height is exact.
       if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
         gsap.registerPlugin(ScrollTrigger);
         if (window.__galleryScrubRevert) window.__galleryScrubRevert();
@@ -1452,18 +1462,19 @@
           const galleryTl = gsap.timeline({
             scrollTrigger: {
               trigger: stripEl,
-              start: 'top 85%',
-              end: 'bottom 25%',
-              scrub: true
+              start: 'top 90%',
+              end: 'bottom top',
+              scrub: true,
+              invalidateOnRefresh: true
             }
           });
           cards.forEach((card, i) => {
             const s = scatterSpots[i % scatterSpots.length];
             galleryTl.fromTo(card,
               { x: s.fromX, y: s.fromY, opacity: s.fromO, rotation: s.rot },
-              { x: 0, y: 0, opacity: 1, rotation: s.rot, ease: 'none', duration: 0.5 }, 0);
+              { x: 0, y: 0, opacity: 1, rotation: s.rot, ease: 'none', duration: 0.3 }, 0);
             galleryTl.to(card,
-              { x: s.exitX, y: s.exitY, opacity: 0.28, ease: 'none', duration: 0.5 }, 0.7);
+              { x: s.exitX, y: s.exitY, opacity: 0.3, ease: 'none', duration: 0.35 }, 0.75);
           });
           return () => {
             if (galleryTl.scrollTrigger) galleryTl.scrollTrigger.kill();
@@ -1471,6 +1482,7 @@
             gsap.set(cards, { clearProps: 'x,y,opacity' });
           };
         });
+        requestAnimationFrame(() => { if (window.ScrollTrigger) ScrollTrigger.refresh(); });
       }
     }
 
