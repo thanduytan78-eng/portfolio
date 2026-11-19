@@ -1448,10 +1448,13 @@
       // direction and fades in as you scroll; they stay fully clear through
       // most of the section, then drift slightly and fade out as the section
       // leaves. Scrolling back up reverses everything. No pin, no hover,
-      // no click on the strip. The trigger is #polaroid-strip only (the
-      // mobile grid lives in a separate element) so its height is exact.
-      if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-        gsap.registerPlugin(ScrollTrigger);
+      // no click on the strip.
+      // Progress is driven from the strip's LIVE bounding rect on every
+      // scroll frame — never from pre-measured trigger positions — so pin
+      // spacers, font/image shifts or late layout can never shift the
+      // mapping (that staleness is what kept the photos faded in ?v=7/?v=8
+      // even though the timeline curve itself was verified correct).
+      if (typeof gsap !== 'undefined') {
         if (window.__galleryScrubRevert) window.__galleryScrubRevert();
         const galleryMm = gsap.matchMedia();
         window.__galleryScrubRevert = () => galleryMm.revert();
@@ -1459,15 +1462,7 @@
           const stripEl = document.getElementById('polaroid-strip');
           const cards = stripEl ? stripEl.querySelectorAll('.scatter-card') : [];
           if (!cards.length) return;
-          const galleryTl = gsap.timeline({
-            scrollTrigger: {
-              trigger: stripEl,
-              start: 'top 90%',
-              end: 'bottom top',
-              scrub: true,
-              invalidateOnRefresh: true
-            }
-          });
+          const galleryTl = gsap.timeline({ paused: true });
           cards.forEach((card, i) => {
             const s = scatterSpots[i % scatterSpots.length];
             galleryTl.fromTo(card,
@@ -1476,13 +1471,25 @@
             galleryTl.to(card,
               { x: s.exitX, y: s.exitY, opacity: 0.3, ease: 'none', duration: 0.35 }, 0.75);
           });
+          let ticking = false;
+          const update = () => {
+            ticking = false;
+            const r = stripEl.getBoundingClientRect();
+            const vh = window.innerHeight || 1;
+            const p = Math.min(1, Math.max(0, (vh * 0.9 - r.top) / (vh * 0.9 + r.height)));
+            galleryTl.progress(p);
+          };
+          const onScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } };
+          window.addEventListener('scroll', onScroll, { passive: true });
+          window.addEventListener('resize', onScroll);
+          update();
           return () => {
-            if (galleryTl.scrollTrigger) galleryTl.scrollTrigger.kill();
+            window.removeEventListener('scroll', onScroll);
+            window.removeEventListener('resize', onScroll);
             galleryTl.kill();
             gsap.set(cards, { clearProps: 'x,y,opacity' });
           };
         });
-        requestAnimationFrame(() => { if (window.ScrollTrigger) ScrollTrigger.refresh(); });
       }
     }
 
